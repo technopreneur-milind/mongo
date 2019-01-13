@@ -1,0 +1,3 @@
+admin admin
+
+mongo "mongodb+srv://technopreneur-milind-4fzhd.mongodb.net/test" --username admin
