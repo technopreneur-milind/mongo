@@ -1,0 +1,17 @@
+F:\Training\MongoDB\Data\mongodata>mongoimport --db demomimport --collection stu
+dents F:\Training\MongoDB\Data\mongodata\datasets\students.json
+2019-01-16T00:08:36.851+0530    connected to: localhost
+2019-01-16T00:08:37.067+0530    imported 200 documents
+
+use demomimport
+show collections
+
+db.students.aggregate([
+{ $group: { _id: "$scores.type", totalScore: { $sum: "$scores.score" } } },
+   { $match: { totalScore: { $gte: 0 } } }
+] )
+
+db.students.aggregate( [
+   { $group: { _id: { type: "$scores.type", score: "$scores.score" }, totscore: { $sum: "$scores.score" } } },
+   { $group: { _id: "$_id.type", avgScore: { $avg: "$totscore" } } }
+] )
